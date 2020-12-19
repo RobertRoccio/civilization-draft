@@ -1,5 +1,14 @@
+#For conducting a random civ draft for Age of Empires II
+
 from random import shuffle
 from math import ceil
+
+BANNER = '''
+    /                                        |
+O===[====================- --==/////////////[}}====*
+    \                                        |
+''' + " ------WELCOME TO THE WINTER 2020 AGE OF EMPIRES TOURNAMENT!-----\n\nBest of luck to all." + \
+        "\nWe will now conduct the civilization draft.\n"
 
 CIVS = ['Britons', 'Byzantines', 'Celts', 'Chinese', 'Franks', 'Goths', 'Japanese', 'Mongols', \
                  'Persians', 'Saracens', 'Teutons', 'Turks', 'Vikings', 'Aztecs', 'Huns', 'Koreans', 'Mayans', \
@@ -10,9 +19,9 @@ CIVS = ['Britons', 'Byzantines', 'Celts', 'Chinese', 'Franks', 'Goths', 'Japanes
 def create_civ_pool(num_players, num_picks):
     civ_pool = CIVS.copy()
     i = ceil((num_players * num_picks)/35)-1
-    for j in range(i):
+    for _ in range(i):
         civ_pool += CIVS
-    for k in range(20):
+    for _ in range(20):
         shuffle(civ_pool)
     return civ_pool
 
@@ -26,6 +35,7 @@ def complete(players, num_picks):
         return False
 
 def main():
+    print(BANNER)
     try:
         num_players = int(input("How many players for the draft?: "))
         if num_players < 1:
@@ -58,6 +68,8 @@ def main():
                     break
                 else:
                     pass
+
+    print("The draft results are:\n")
     for player in players:
         player.sort()
         print("\nPlayer-----")
